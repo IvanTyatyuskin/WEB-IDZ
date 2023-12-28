@@ -1,0 +1,21 @@
+﻿@model IDZ.Models.ViewModels.MSVM
+
+<h2>Редактирование услуги мастера</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.ExecutionTime, "Execution Time")
+        @Html.EditorFor(model => model.ExecutionTime, new { htmlAttributes = new { @class = "form-control", type = "time" } })
+        @Html.ValidationMessageFor(model => model.ExecutionTime)
+    </div>
+
+    <input type="submit" value="Сохранить" class="btn btn-primary" />
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

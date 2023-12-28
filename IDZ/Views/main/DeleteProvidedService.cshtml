@@ -1,0 +1,35 @@
+﻿@model IDZ.Models.Entities.providedService
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete Provided Service</title>
+</head>
+<body>
+    <div>
+        <h2>Вы уверены, что хотите удалит?</h2>
+        <div>
+            <h3>Детали удаляемого объекта:</h3>
+            <p>
+                <strong>Имя услуги:</strong> @Html.DisplayFor(model => model.serviceName)<br />
+                <strong>Дата и время оказания услуги:</strong> @Html.DisplayFor(model => model.providedServiceDateTime)<br />
+                <strong>Статус:</strong> @Html.DisplayFor(model => model.providedServiceStatus)<br />
+                <strong>Клиент:</strong> @Html.DisplayFor(model => model.Client.surname) @Html.DisplayFor(model => model.Client.name) @Html.DisplayFor(model => model.Client.patronymic)<br />
+                <strong>Мастер:</strong> @Html.DisplayFor(model => model.Masters_Services.Master.surname) @Html.DisplayFor(model => model.Masters_Services.Master.name) @Html.DisplayFor(model => model.Masters_Services.Master.patronymic)<br />
+            </p>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <input type="hidden" name="providedServiceID" value="@Model.providedServiceID" />
+                <button type="submit" class="btn btn-danger">Delete</button>
+                @Html.ActionLink("Cancel", "ListOfProvidedServices", null, new { @class = "btn btn-default" })
+            }
+        </div>
+    </div>
+</body>
+</html>

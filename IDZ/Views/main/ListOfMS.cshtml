@@ -1,0 +1,44 @@
+﻿@model IEnumerable<IDZ.Models.Entities.Masters_Services>
+
+@{
+    ViewBag.Title = "ListOfMS";
+}
+
+<h2>ListOfMS</h2>
+
+<p>
+    @Html.ActionLink("Добавить связь мастер-услуга", "CreateMS", "IDZ", new { @class = "btn btn-default" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.executionTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Master.surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Service.serviceName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.executionTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Master.surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Service.serviceName)
+        </td>
+        <td>
+            @Html.ActionLink("Изменить время выполнения работы", "EditMS", new { masterID = item.masterID, serviceName = item.serviceName }) |
+            @Html.ActionLink("Удалить", "DeleteMS", new { masterID = item.masterID, serviceName = item.serviceName })
+        </td>
+    </tr>
+}
+
+</table>

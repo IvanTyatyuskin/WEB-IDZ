@@ -1,0 +1,31 @@
+﻿@model IDZ.Models.Entities.Masters_Services
+
+@{
+    ViewBag.Title = "Confirm Deletion";
+}
+
+<h2>Confirm Deletion</h2>
+
+<div>
+    <h3>Вы уверены, что хотите удалить данный объект?</h3>
+    <div>
+        <h4>Service Details</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>Master ID</dt>
+            <dd>@Model.Master.surname @Model.Master.name @Model.Master.patronymic</dd>
+
+            <dt>Service Name</dt>
+            <dd>@Model.serviceName</dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+@*            <input type="hidden" name="providedServiceID" value="@Model.providedServiceID" />
+*@            <button type="submit" class="btn btn-danger">Delete</button>
+            @Html.ActionLink("Cancel", "ListOfProvidedServices", null, new { @class = "btn btn-default" })
+        }
+    </div>
+</div>

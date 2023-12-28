@@ -1,0 +1,32 @@
+﻿@model IDZ.Models.ViewModels.ClientDetailsViewModel
+
+<!-- Данные клиента ... -->
+<div class="well">
+    <h2>Оказанные услуги</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Название услуги</th>
+                    <th>Стоимость</th>
+                    <th>Дата оказания услуги</th>
+                    <th>Статус услуги</th>
+                    <th>Имя мастера</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var service in Model.ProvidedServices)
+                {
+                    <tr>
+                        <td>@service.ServiceName</td>
+                        <td>@service.ServicePrice</td>
+                        <td>@service.ProvidedServiceDateTime.ToString("g")</td>
+                        <td>@service.ProvidedServiceStatus</td>
+                        <td>@service.MasterSurname @service.MasterName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@Html.ActionLink("Вернуться к списку клиентов", "ListOfClients", null, new { @class = "btn btn-primary" })

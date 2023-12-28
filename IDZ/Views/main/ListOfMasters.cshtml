@@ -1,0 +1,49 @@
+﻿@model List<IDZ.Models.Entities.Master>
+
+@{
+    ViewBag.Title = "ListOfClients";
+}
+
+<h2>Список клиентов парикмахерской</h2>
+@if (User.Identity.IsAuthenticated && User.IsInRole("Master"))
+{
+    @Html.ActionLink("Добавить мастера", "CreateMaster", "IDZ", new { @class = "btn btn-default" })
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="text-center">Имя</th>
+            <th class="text-center">Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var master in Model)
+        {
+            <tr class="text-center">
+                <td>@Html.ActionLink($"{master.surname} {master.name}  {master.patronymic}", "MasterDetails", "main", new { masterID = master.masterID }, null)</td>
+
+                <td>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Master"))
+                    {
+                        @Html.ActionLink("Редактировать", "EditMaster", "main", new { masterID = master.masterID }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Удалить", "DeleteMaster", "main", new { masterID = master.masterID }, new { @class = "btn btn-danger" })
+                    }
+
+
+
+
+                </td>
+
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="row">
+    <div class="col-md-12">
+        @Html.ActionLink("Перейти к оказанным услугам", "ListOfProvidedServices", "IDZ", new { @class = "btn btn-primary" })
+        @Html.ActionLink("Перейти к клиентам", "ListOfClients", "IDZ", new { @class = "btn btn-primary" })
+    </div>
+</div>

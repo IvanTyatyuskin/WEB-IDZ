@@ -1,0 +1,42 @@
+﻿@model IDZ.Models.Entities.Client
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Delete Client";
+}
+
+<h2>Delete Client</h2>
+
+<h3>Вы уверены, что хотите удалить этого клиента?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>Client ID</dt>
+        <dd>@Html.DisplayFor(model => model.clientID)</dd>
+
+        <dt>Name</dt>
+        <dd>@Html.DisplayFor(model => model.name)</dd>
+
+        <dt>Surname</dt>
+        <dd>@Html.DisplayFor(model => model.surname)</dd>
+
+        <dt>Patronymic</dt>
+        <dd>@Html.DisplayFor(model => model.patronymic)</dd>
+
+        <dt>Phone Number</dt>
+        <dd>@Html.DisplayFor(model => model.phoneNumber)</dd>
+
+        <dt>Email</dt>
+        <dd>@Html.DisplayFor(model => model.email)</dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @Html.HiddenFor(model => model.clientID)
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "ListOfClients", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

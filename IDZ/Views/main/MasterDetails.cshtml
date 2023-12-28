@@ -1,0 +1,33 @@
+﻿@model IDZ.Models.ViewModels.MasterDetailsVM
+@using IDZ.Models.Entities
+
+@{
+    ViewBag.Title = "Детали мастера";
+}
+
+<h2>Детали мастера @Model.Master.name</h2>
+
+
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Услуга</th>
+            <th>Время выполнения</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var service in Model.Services)
+        {
+            <tr>
+                <td>@service.ServiceName</td>
+                <td>@service.ExecutionTime.TotalMinutes минут</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+

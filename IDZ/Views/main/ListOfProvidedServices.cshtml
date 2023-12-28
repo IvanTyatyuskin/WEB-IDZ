@@ -1,0 +1,46 @@
+﻿@model List<IDZ.Models.Entities.providedService>
+
+@{
+    ViewBag.Title = "ListOfProvidedServices";
+}
+
+<h2>Список предоставленных услуг</h2>
+@Html.ActionLink("Добавить новую услугу", "CreateProvidedService", new { controller = "main" }, new { @class = "btn btn-default" })
+
+<table class="table">
+    <thead>
+        <tr>
+            <th class="text-center">Название услуги</th>
+            <th class="text-center">Статус</th>
+            <th class="text-center">Клиент</th>
+            <th class="text-center">Мастер</th>
+            <th class="text-center">Дата и время предоставления</th>
+            <th class="text-center">Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var service in Model)
+        {
+            <tr class="text-center">
+                <td>@service.serviceName</td>
+                <td>@service.providedServiceStatus</td>
+                <td>@service.Client.surname @service.Client.name @service.Client.patronymic </td> <!-- Проверьте правильность свойств модели -->
+                <td>@service.Masters_Services.Master.surname  @service.Masters_Services.Master.name @service.Masters_Services.Master.patronymic</td> <!-- Проверьте правильность свойств модели -->
+                <td>@service.providedServiceDateTime.ToString("dd.MM.yyyy HH:mm")</td> <!-- Форматируйте дату по необходимости -->
+                
+                <td>
+                    @Html.ActionLink("Редактировать", "EditProvidedService", new { providedServiceID = service.providedServiceID }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Удалить", "DeleteProvidedService", new { providedServiceID = service.providedServiceID }, new { @class = "btn btn-danger" })
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="row">
+    <div class="col-md-12">
+        @Html.ActionLink("Перейти к клиентам", "ListOfClients", "IDZ", new { @class = "btn btn-primary" })
+        @*@Html.ActionLink("Перейти к логам", "CareLogsList", "idz", new { @class = "btn btn-primary" })*@
+    </div>
+</div>
